@@ -1,3 +1,4 @@
+```groovy
 pipeline {
     agent any
 
@@ -8,13 +9,13 @@ pipeline {
                 echo "Running Selenium Tests using pytest"
 
                 // Install Python dependencies
-                bat 'pip install -r requirements.txt'
+                bat 'python -m pip install -r requirements.txt'
 
                 // Start Flask application in background
-                bat 'start /B python app.py'
+                bat 'start "" /B python app.py'
 
-                // Wait for Flask application to start
-                bat 'ping 127.0.0.1 -n 5 > nul'
+                // Wait for Flask application to start (Windows)
+                bat 'powershell -NoProfile -Command "Start-Sleep -Seconds 5"'
 
                 // Run Selenium tests
                 bat 'python -m pytest -v'
@@ -29,12 +30,11 @@ pipeline {
             }
         }
 
-        stage('Docker Login'){
-            steps{
+        stage('Docker Login') {
+            steps {
                 bat 'docker login -u tanzila123 -p Tan@1234'
             }
         }
-        
 
         stage('Push Docker Image to Docker Hub') {
             steps {
@@ -67,3 +67,4 @@ pipeline {
         }
     }
 }
+```
