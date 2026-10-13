@@ -13,8 +13,8 @@ pipeline {
                 // Start Flask application in background
                 bat 'start "" /B "C:\\Users\\Tanzila\\AppData\\Local\\Programs\\Python\\Python310\\python.exe" app.py'
 
-                // Wait for Flask application to start
-                bat 'powershell -NoProfile -Command "Start-Sleep -Seconds 5"'
+                // Wait for Flask application
+                bat 'timeout /t 5 /nobreak > nul'
 
                 // Run Selenium tests
                 bat '"C:\\Users\\Tanzila\\AppData\\Local\\Programs\\Python\\Python310\\python.exe" -m pytest -v'
