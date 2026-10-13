@@ -8,16 +8,16 @@ pipeline {
                 echo "Running Selenium Tests using pytest"
 
                 // Install Python dependencies
-                bat 'python -m pip install -r requirements.txt'
+                bat '"C:\\Users\\Tanzila\\AppData\\Local\\Programs\\Python\\Python310\\python.exe" -m pip install -r requirements.txt'
 
                 // Start Flask application in background
-                bat 'start "" /B python app.py'
+                bat 'start "" /B "C:\\Users\\Tanzila\\AppData\\Local\\Programs\\Python\\Python310\\python.exe" app.py'
 
-                // Wait for Flask application to start (Windows)
+                // Wait for Flask application to start
                 bat 'powershell -NoProfile -Command "Start-Sleep -Seconds 5"'
 
                 // Run Selenium tests
-                bat 'python -m pytest -v'
+                bat '"C:\\Users\\Tanzila\\AppData\\Local\\Programs\\Python\\Python310\\python.exe" -m pytest -v'
             }
         }
 
