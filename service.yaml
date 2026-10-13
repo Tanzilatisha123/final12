@@ -1,0 +1,19 @@
+
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: week12-service
+
+spec:
+  selector:
+    app: week12app
+
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+      nodePort: 30188
+
+  type: NodePort
+  
